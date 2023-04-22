@@ -131,7 +131,7 @@ let prev_page=0;
 let lastUrl=' ';
 let totalPages = 100;
 
-//Seeting tags Dynamically from genres
+//Selecting tags Dynamically from genres
 //we have to load movies on to the screen based on this selected genre Array.
 let selectedGenre = [];
 //calling function first as we need data to display onload of page
@@ -145,30 +145,36 @@ function setGenre(){
         tag.innerText = genre.name;
        
         tag.addEventListener('click',() =>{
-            if(selectedGenre.length == 0){
-                selectedGenre.push(genre.id);
-            }else{
-                if(selectedGenre.includes(genre.id)){
-                    selectedGenre.forEach((id,idx) => {
-                        if(id == genre.id){
-                            selectedGenre.splice(idx,1);
-                        }
-                    })
-                }else{
-                    selectedGenre.push(genre.id);
-                }
-            }
-            // console.log(selectedGenre)
-            //now here we call API for only selectedgenre
-            //kept all these steps as we need to follow from given in website, and kept encode-URI AS IT IS GET REQUEST METHOD;
-            getMovies(API_URL+'&with_genres='+encodeURI(selectedGenre.join(',')));
-            highlightSelected();
-            //disabling button after clicking two times on same genre, as clear shows up after clicking genre
-            if(selectedGenre.length == 0){
-              clearButton.innerHTML='';
-            }
-        })
-        tagsEl.appendChild(tag);
+          //checking if text is there when selecting genre
+           if(search.value !== ''){
+            search.value = '';
+           }
+
+          //conditions for selecting genre 
+          if(selectedGenre.length == 0){
+              selectedGenre.push(genre.id);
+          }else{
+              if(selectedGenre.includes(genre.id)){
+                  selectedGenre.forEach((id,idx) => {
+                      if(id == genre.id){
+                          selectedGenre.splice(idx,1);
+                      }
+                  })
+              }else{
+                  selectedGenre.push(genre.id);
+              }
+          }
+          // console.log(selectedGenre)
+          //now here we call API for only selectedgenre
+          //kept all these steps as we need to follow from given in website, and kept encode-URI AS IT IS GET REQUEST METHOD;
+          getMovies(API_URL+'&with_genres='+encodeURI(selectedGenre.join(',')));
+          highlightSelected();
+          //disabling button after clicking two times on same genre, as clear shows up after clicking genre
+          if(selectedGenre.length == 0){
+            clearButton.innerHTML='';
+          }
+      })
+      tagsEl.appendChild(tag);
     })
 };
 

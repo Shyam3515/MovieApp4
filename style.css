@@ -134,6 +134,7 @@ main{
     align-items: center;
     margin:10px auto;
     display: none;
+    transition: all 1s ease-in;
 }
 .tag,.clear,#genre{
     color:white;
@@ -298,8 +299,8 @@ main{
     right:5%;
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 395px) {
     .search {
-        width:220px;
+        width:200px;
     }
 }
