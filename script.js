@@ -202,21 +202,20 @@ let clearButton = document.getElementById('clearBtn')
 function clearBtn(){
   let clearBtn = document.getElementById('clear');
   if(clearBtn){
-      return;
+      //click is an event and ()=> creating function
+      clear.addEventListener('click', () => {
+        selectedGenre = [];
+        setGenre();            
+        getMovies(API_URL);
+        clearButton.innerHTML='';
+    })
   }
   else{
       let clear = document.createElement('div');
       clear.classList.add('clear');
       clear.id = 'clear';
       clear.innerText = ' Clear ';
-      //click is an event and ()=> creating function
-      clear.addEventListener('click', () => {
-          selectedGenre = [];
-          setGenre();            
-          getMovies(API_URL);
-          clearButton.innerHTML='';
-      })
-    clearButton.append(clear);
+      clearButton.append(clear);
   }   
 };
 
